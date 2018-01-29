@@ -14,10 +14,10 @@ namespace TFClassify
         private static int IMAGE_MEAN = 117;
         private static float IMAGE_STD = 1;
         private static string INPUT_NAME = "input";
-     	private static string OUTPUT_NAME = "output";
+         private static string OUTPUT_NAME = "output";
 
         private TFGraph graph;
-	    private string[] labels;
+        private string[] labels;
 
         
         public Classifier(byte[] model, string[] labels)
@@ -27,7 +27,7 @@ namespace TFClassify
 #endif
             this.labels = labels;
             this.graph = new TFGraph();
-		    this.graph.Import(model, "");
+            this.graph.Import(model, "");
         
         }
 
@@ -76,21 +76,21 @@ namespace TFClassify
 
 
         public static TFTensor TransformInput(Color32[] pic, int width, int height)
-		{
-			float[] floatValues = new float[width * height * 3];
+        {
+            float[] floatValues = new float[width * height * 3];
 
-			for (int i = 0; i < pic.Length; ++i)
-			{
-				var color = pic[i];
+            for (int i = 0; i < pic.Length; ++i)
+            {
+                var color = pic[i];
 
-				floatValues [i * 3 + 0] = (color.r - IMAGE_MEAN) / IMAGE_STD;
-				floatValues [i * 3 + 1] = (color.g - IMAGE_MEAN) / IMAGE_STD;
-				floatValues [i * 3 + 2] = (color.b - IMAGE_MEAN) / IMAGE_STD;
-			}
+                floatValues [i * 3 + 0] = (color.r - IMAGE_MEAN) / IMAGE_STD;
+                floatValues [i * 3 + 1] = (color.g - IMAGE_MEAN) / IMAGE_STD;
+                floatValues [i * 3 + 2] = (color.b - IMAGE_MEAN) / IMAGE_STD;
+            }
 
-			TFShape shape = new TFShape(1, width, height, 3);
+            TFShape shape = new TFShape(1, width, height, 3);
 
-			return TFTensor.FromBuffer(shape, floatValues, 0, floatValues.Length);
-		}
+            return TFTensor.FromBuffer(shape, floatValues, 0, floatValues.Length);
+        }
     }
 }
