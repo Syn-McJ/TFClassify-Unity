@@ -1,6 +1,6 @@
 # What
 
-This is an example of using model trained with Tensorflow in Unity application for inference. It's a quick port of [TF Classify example](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android) from Tensorflow repo, using [TensorflowSharp](https://github.com/migueldeicaza/TensorFlowSharp) for gluing it all together.
+This is an example of using model trained with Tensorflow in Unity application for image classification. It's a quick port of [TF Classify example](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android) from Tensorflow repo, using [TensorflowSharp](https://github.com/migueldeicaza/TensorFlowSharp) for gluing it all together.
 
 
 # How
