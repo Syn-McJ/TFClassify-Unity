@@ -112,9 +112,11 @@ public class PhoneCamera : MonoBehaviour
 
 	private Texture2D TakeTextureSnap()
 	{
+		var smallest = backCam.width < backCam.height ?
+			backCam.width : backCam.height;
 		var snap = TextureTools.CropWithRect(backCam,
-		 	new Rect(0, 0, backCam.width, backCam.height),
-			 TextureTools.RectOptions.Center, 0, 0);
+		 	new Rect(0, 0, smallest, smallest),
+			TextureTools.RectOptions.Center, 0, 0);
 
 		return snap;
 	}
