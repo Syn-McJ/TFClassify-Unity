@@ -98,7 +98,7 @@ public class PhoneCamera : MonoBehaviour
     {
         var snap = TakeTextureSnap();
         var scaled = Scale(snap);
-        var rotated = await RotateAsync(scaled);
+        var rotated = await RotateAsync(scaled.GetPixels32(), scaled.width, scaled.height);
         var probabilities = await this.classifier.ClassifyAsync(rotated);
         
         this.uiText.text = String.Empty;
@@ -129,12 +129,12 @@ public class PhoneCamera : MonoBehaviour
     }
 
 
-    private Task<Color32[]> RotateAsync(Texture2D scaled)
+    private Task<Color32[]> RotateAsync(Color32[] pixels, int width, int height)
     {
         return Task.Run(() =>
         {
             return TextureTools.RotateImageMatrix(
-                    scaled.GetPixels32(), scaled.width, scaled.height, -90);
+                    pixels, width, height, -90);
         });
     }
 
