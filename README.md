@@ -16,6 +16,8 @@ You'll need Unity 2017.1 or above and [Unity Tensorflow Plugin](https://s3.amazo
 
 More info can be found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity-(Experimental).md).
 
+If you want to use your own model, simply rename your file extension from .pb to .bytes and put it in Resources.
+
 # Notes
 
 I'm neither Unity nor Tensorflow expert, so if you found any problems with this example feel free to open an issue.
