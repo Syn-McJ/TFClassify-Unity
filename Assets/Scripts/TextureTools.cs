@@ -151,7 +151,7 @@ namespace TFClassify
         }
 
 
-        public static Texture2D RotateTexture(Texture2D originTexture, int angle){
+        public static Texture2D RotateTexture(Texture2D originTexture, int angle) {
             var result = RotateImageMatrix(
                 originTexture.GetPixels32(), originTexture.width, originTexture.height, angle);
             var resultTexture = new Texture2D(originTexture.width, originTexture.height);

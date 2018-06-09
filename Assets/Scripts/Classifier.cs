@@ -10,25 +10,25 @@ namespace TFClassify
 {
     public class Classifier
     {
-        private static int INPUT_SIZE = 224;
         private static int IMAGE_MEAN = 117;
         private static float IMAGE_STD = 1;
         private static string INPUT_NAME = "input";
-         private static string OUTPUT_NAME = "output";
+        private static string OUTPUT_NAME = "output";
 
+        private int inputSize;
         private TFGraph graph;
         private string[] labels;
 
         
-        public Classifier(byte[] model, string[] labels)
+        public Classifier(byte[] model, string[] labels, int inputSize)
         {
 #if UNITY_ANDROID
             TensorFlowSharp.Android.NativeBinding.Init();
 #endif
             this.labels = labels;
+            this.inputSize = inputSize;
             this.graph = new TFGraph();
             this.graph.Import(model, "");
-        
         }
 
 
@@ -38,23 +38,25 @@ namespace TFClassify
             {
                 var map = new List<KeyValuePair<string, float>>();
 
-                using(var session = new TFSession(graph))
+                using(var session = new TFSession(this.graph))
                 {
-                    var tensor = TransformInput(data, INPUT_SIZE, INPUT_SIZE);
-                    var runner = session.GetRunner ();
-                    runner.AddInput (graph [INPUT_NAME] [0], tensor).Fetch (graph [OUTPUT_NAME] [0]);
-                    var output = runner.Run ();
+                    var tensor = TransformInput(data, this.inputSize, this.inputSize);
+                    var runner = session.GetRunner();
+                    runner.AddInput(graph[INPUT_NAME][0], tensor).Fetch(graph[OUTPUT_NAME][0]);
+                    var output = runner.Run();
                     
                     // output[0].Value() is a vector containing probabilities of
                     // labels for each image in the "batch". The batch size was 1.
                     // Find the most probably label index.
 
-                    var result = output [0];
+                    var result = output[0];
                     var rshape = result.Shape;
                     
-                    if (result.NumDims != 2 || rshape [0] != 1) {
+                    if (result.NumDims != 2 || rshape [0] != 1)
+                    {
                         var shape = "";
-                        foreach (var d in rshape) {
+                        foreach (var d in rshape)
+                        {
                             shape += $"{d} ";
                         }
                         
@@ -63,9 +65,10 @@ namespace TFClassify
                         Environment.Exit (1);
                     }
 
-                    var probabilities = ((float [] [])result.GetValue (jagged: true)) [0];
+                    var probabilities = ((float[][])result.GetValue(jagged: true))[0];
 
-                    for (int i = 0; i < labels.Length; i++) {
+                    for (int i = 0; i < labels.Length; i++)
+                    {
                         map.Add(new KeyValuePair<string, float>(labels[i], probabilities[i] * 100));
                     }
                 }
