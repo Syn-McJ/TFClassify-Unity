@@ -8,6 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/scene1.unity
+  - enabled: 0
+    path: Assets/Detect.unity
     guid: 85aa1ed206fe7de4187b8a6fcce4362a
+  - enabled: 1
+    path: Assets/Classify.unity
+    guid: 48a90ec4b8f04ed4b968ac1e6153ac36
+  m_configObjects: {}
