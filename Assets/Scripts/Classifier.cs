@@ -38,9 +38,9 @@ namespace TFClassify
             {
                 var map = new List<KeyValuePair<string, float>>();
 
-                using(var session = new TFSession(this.graph))
+                using (var session = new TFSession(this.graph))
+                using (var tensor = TransformInput(data, this.inputSize, this.inputSize))
                 {
-                    var tensor = TransformInput(data, this.inputSize, this.inputSize);
                     var runner = session.GetRunner();
                     runner.AddInput(graph[INPUT_NAME][0], tensor).Fetch(graph[OUTPUT_NAME][0]);
                     var output = runner.Run();
@@ -70,6 +70,11 @@ namespace TFClassify
                     for (int i = 0; i < labels.Length; i++)
                     {
                         map.Add(new KeyValuePair<string, float>(labels[i], probabilities[i] * 100));
+                    }
+
+                    foreach (var ts in output)
+                    {
+                        ts.Dispose();
                     }
                 }
 

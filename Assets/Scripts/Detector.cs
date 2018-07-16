@@ -47,28 +47,26 @@ namespace TFClassify
             return Task.Run(() =>
             {
                 using (var session = new TFSession(this.graph))
+                using (var tensor = TransformInput(data, this.inputSize, this.inputSize))
                 {
-                    using(var tensor = TransformInput(data, this.inputSize, this.inputSize))
-                    {
-                        var runner = session.GetRunner();
-                        runner.AddInput(this.graph["image_tensor"][0], tensor)
-                              .Fetch(this.graph["detection_boxes"][0],
-                                     this.graph["detection_scores"][0],
-                                     this.graph["detection_classes"][0],
-                                     this.graph["num_detections"][0]);
-                        var output = runner.Run();
+                    var runner = session.GetRunner();
+                    runner.AddInput(this.graph["image_tensor"][0], tensor)
+                          .Fetch(this.graph["detection_boxes"][0],
+                                 this.graph["detection_scores"][0],
+                                 this.graph["detection_classes"][0],
+                                 this.graph["num_detections"][0]);
+                    var output = runner.Run();
 
-                        var boxes = (float[,,])output[0].GetValue(jagged: false);
-                        var scores = (float[,])output[1].GetValue(jagged: false);
-                        var classes = (float[,])output[2].GetValue(jagged: false);
+                    var boxes = (float[,,])output[0].GetValue(jagged: false);
+                    var scores = (float[,])output[1].GetValue(jagged: false);
+                    var classes = (float[,])output[2].GetValue(jagged: false);
                         
-                        foreach(var ts in output)
-                        {
-                            ts.Dispose();
-                        }
-
-                        return GetBoxes(boxes, scores, classes, MINIMUM_CONFIDENCE);
+                    foreach(var ts in output)
+                    {
+                        ts.Dispose();
                     }
+
+                    return GetBoxes(boxes, scores, classes, MINIMUM_CONFIDENCE);
                 }
             });
         }
