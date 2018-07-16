@@ -156,6 +156,9 @@ public class PhoneCamera : MonoBehaviour
         {
             this.uiText.text += probabilities[i].Key + ": " + String.Format("{0:0.000}%", probabilities[i].Value) + "\n";
         }
+
+        Destroy(snap);
+        Destroy(scaled);
     }
 
 
@@ -167,6 +170,9 @@ public class PhoneCamera : MonoBehaviour
         var scaled = Scale(snap, detectImageSize);
         var rotated = await RotateAsync(scaled.GetPixels32(), scaled.width, scaled.height);
         this.boxOutlines = await this.detector.DetectAsync(rotated);
+
+        Destroy(snap);
+        Destroy(scaled);
     }
 
     
