@@ -29,7 +29,13 @@ You'll need Unity 2017.1 or above and [Unity TensorFlow Plugin](https://s3.amazo
 
 More info can be found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity.md).
 
-If you want to use your own model, simply rename your file extension from .pb to .bytes, put it in Resources and set Model File and Labels File to your model and labels in main camera object of the scene you chose. Be aware that in order for your model to work, it has to be trained with the same version of TensorFlow that is used in the Unity plugin, which is 1.4 (or might be 1.5 in the latest version of the plugin, I haven't check yet).
+***To use your own model:***
+
+- Make sure your model trained with TensorFlow 1.4 if you use 0.3 version of the Unity plugin that I linked above. You can also try 0.4 version that seems to use TensorFlow 1.7.1, but be aware that there is a [migration guide](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Migrating.md).
+- Change extension of your model from .pb to .bytes.
+- Put your model and labels in Resources.
+- Set Model file and Labels file to your model and labels in main camera object of the scene you chose.
+- If neccesary, change `classifyImageSize`, `IMAGE_MEAN`, `IMAGE_STD`, `INPUT_NAME` and `OUTPUT_NAME` to suit your model.
 
 # Notes
 
