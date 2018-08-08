@@ -129,7 +129,8 @@ public class PhoneCamera : MonoBehaviour
     {
         this.classifier = new Classifier(
             this.modelFile.bytes,
-            Regex.Split(this.labelsFile.text, "\n|\r|\r\n" ),
+            Regex.Split(this.labelsFile.text, "\n|\r|\r\n")
+                .Where(s => !String.IsNullOrEmpty(s)).ToArray(),
             classifyImageSize);
     }
 
@@ -138,7 +139,8 @@ public class PhoneCamera : MonoBehaviour
     {
         this.detector = new Detector(
             this.modelFile.bytes,
-            Regex.Split(this.labelsFile.text, "\n|\r|\r\n" ),
+            Regex.Split(this.labelsFile.text, "\n|\r|\r\n")
+                .Where(s => !String.IsNullOrEmpty(s)).ToArray(),
             detectImageSize);
     }
 
