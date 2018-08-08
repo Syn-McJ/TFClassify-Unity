@@ -31,7 +31,7 @@ More info can be found [here](https://github.com/Unity-Technologies/ml-agents/bl
 
 ***To use your own model:***
 
-- Make sure your model trained with TensorFlow 1.4 if you use 0.3 version of the Unity plugin that I linked above. You can also try 0.4 version that seems to use TensorFlow 1.7.1, but be aware that there is a [migration guide](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Migrating.md).
+- Make sure your model trained with TensorFlow 1.4 if you use 0.3 version of the Unity plugin that I linked above. You can also try 0.4 version that use TensorFlow 1.7.1, although some people have attempted and seems like it doesn't work, see issues.
 - Change extension of your model from .pb to .bytes.
 - Put your model and labels in Resources.
 - Set Model file and Labels file to your model and labels in main camera object of the scene you chose.
