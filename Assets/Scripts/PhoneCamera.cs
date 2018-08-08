@@ -11,6 +11,7 @@ using TFClassify;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Debug = UnityEngine.Debug;
+using TensorFlow;
 
 
 public enum Mode
@@ -49,14 +50,7 @@ public class PhoneCamera : MonoBehaviour
 
     private void Start()
     {
-        if (mode == Mode.Classify)
-        {
-            LoadClassifier();
-        }
-        else
-        {
-            LoadDetector();
-        }
+        LoadWorker();
 
         defaultBackground = background.texture;
         WebCamDevice[] devices = WebCamTexture.devices;
@@ -121,6 +115,31 @@ public class PhoneCamera : MonoBehaviour
             {
                 DrawBoxOutline(outline);
             }
+        }
+    }
+
+
+    private void LoadWorker()
+    {
+        try
+        {
+            if (mode == Mode.Classify)
+            {
+                LoadClassifier();
+            }
+            else
+            {
+                LoadDetector();
+            }
+        }
+        catch (TFException ex)
+        {
+            if (ex.Message.EndsWith("is up to date with your GraphDef-generating binary.)."))
+            {
+                this.uiText.text = "Error: TFException. Make sure you model trained with same version of TensorFlow as in Unity plugin.";
+            }
+            
+            throw;
         }
     }
 
