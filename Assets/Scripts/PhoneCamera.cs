@@ -150,17 +150,26 @@ public class PhoneCamera : MonoBehaviour
         var snap = TakeTextureSnap();
         var scaled = Scale(snap, classifyImageSize);
         var rotated = await RotateAsync(scaled.GetPixels32(), scaled.width, scaled.height);
-        var probabilities = await this.classifier.ClassifyAsync(rotated);
-        
-        this.uiText.text = String.Empty;
 
-        for(int i = 0; i < 3; i++)
+        try
         {
-            this.uiText.text += probabilities[i].Key + ": " + String.Format("{0:0.000}%", probabilities[i].Value) + "\n";
-        }
+            var probabilities = await this.classifier.ClassifyAsync(rotated);
+            this.uiText.text = String.Empty;
 
-        Destroy(snap);
-        Destroy(scaled);
+            for(int i = 0; i < 3; i++)
+            {
+                this.uiText.text += probabilities[i].Key + ": " + String.Format("{0:0.000}%", probabilities[i].Value) + "\n";
+            }
+        }
+        catch (NullReferenceException)
+        {
+            this.uiText.text = "Error: NullReferenceException. Make sure you set correct INPUT_NAME and OUTPUT_NAME";
+        }
+        finally
+        {
+            Destroy(snap);
+            Destroy(scaled);
+        }
     }
 
 
