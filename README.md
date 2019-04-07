@@ -27,6 +27,8 @@ You'll need Unity 2017.1 or above and [Unity TensorFlow Plugin](https://s3.amazo
 - In `Other settings` also set `Scripting runtime version` to `.NET 4.6 Equivalent`.
 - Build and run.
 
+For iOS, folow this additional instructions: [ios-additional-instructions-for-building](https://github.com/llSourcell/Unity_ML_Agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity-(Experimental).md#ios-additional-instructions-for-building)
+
 More info can be found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity.md).
 
 ***To use your own model:***
