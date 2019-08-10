@@ -27,9 +27,14 @@ You'll need Unity 2017.1 or above and [Unity TensorFlow Plugin](https://s3.amazo
 - In `Other settings` also set `Scripting runtime version` to `.NET 4.6 Equivalent`.
 - Build and run.
 
+**Important**: in new versions of Unity you might see error "Multiple assemblies with equivalent identity have been imported...". In that case, you'll need to go into 'Assets/ML-Agents/Plugins/Android' folder and manually delete all .dll files that are specified in the error message.
+
+"Unloading broken assembly..." error can be safely ignored.
+
 For iOS, folow this additional instructions: [ios-additional-instructions-for-building](https://github.com/llSourcell/Unity_ML_Agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity-(Experimental).md#ios-additional-instructions-for-building)
 
 More info can be found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-TensorFlow-Sharp-in-Unity.md).
+
 
 ***To use your own model:***
 
