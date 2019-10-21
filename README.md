@@ -18,7 +18,7 @@ Note that performance is worse than in TensorFlow Android example and at this mo
 
 # How
 
-You'll need Unity 2017.1 or above and [Unity TensorFlow Plugin](https://s3.amazonaws.com/unity-ml-agents/0.3/TFSharpPlugin.unitypackage).
+You'll need Unity 2019.2 or above and [Unity TensorFlow Plugin](https://s3.amazonaws.com/unity-ml-agents/0.3/TFSharpPlugin.unitypackage).
 
 - Open the project in Unity.
 - Install TensorFlow plugin.
