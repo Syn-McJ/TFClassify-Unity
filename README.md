@@ -1,3 +1,5 @@
+Note: TensorFlowSharp plugin has been deprecated, instead Unity uses their new Barracuda inference engine. [See the new example](https://github.com/Syn-McJ/TFClassify-Unity-Barracuda).
+
 # What
 
 This is an example of using model trained with TensorFlow in Unity application for image classification and object detection. It's a quick port of [TF Classify and TF Detect examples](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/android) from TensorFlow repo, using [TensorFlowSharp](https://github.com/migueldeicaza/TensorFlowSharp) for gluing it all together.
@@ -46,4 +48,4 @@ More info can be found [here](https://github.com/Unity-Technologies/ml-agents/bl
 
 # Notes
 
-I'm neither Unity nor TensorFlow expert, so if you found any problems with this example feel free to open an issue.
+I'm not a Unity expert, so if you found any problems with this example feel free to open an issue.
