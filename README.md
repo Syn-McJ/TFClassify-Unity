@@ -1,4 +1,4 @@
-Note: TensorFlowSharp plugin has been deprecated, instead Unity uses their new Barracuda inference engine. [See the new example](https://github.com/Syn-McJ/TFClassify-Unity-Barracuda).
+Note: TensorFlowSharp plugin has been deprecated, instead Unity uses its new Barracuda inference engine. [See the new example](https://github.com/Syn-McJ/TFClassify-Unity-Barracuda). It's better in terms of performance and ease of use for certain models.
 
 # What
 
